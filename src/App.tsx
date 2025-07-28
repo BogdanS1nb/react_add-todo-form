@@ -52,19 +52,22 @@ export const App = () => {
   }
 
   const handleSelect = (event: React.ChangeEvent<HTMLSelectElement>) => {
-    setUserId(Number(event.target.value));
+    const newUserId = Number(event.target.value);
 
-    // зняти помилку лише для user
-    if (!userId) {
-      setTouchedUser(true);
+    setUserId(newUserId);
+
+    if (touchedUser && newUserId !== 0) {
+      setTouchedUser(false);
     }
   };
 
   const handleInput = (event: React.ChangeEvent<HTMLInputElement>) => {
-    setTitle(event.target.value);
+    const newTitle = event.target.value;
+
+    setTitle(newTitle);
 
     // зняти помилку лише для title
-    if (!title.trim()) {
+    if (touchedTitle && newTitle.trim()) {
       setTouchedTitle(true);
     }
   };
